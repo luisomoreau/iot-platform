@@ -75,13 +75,13 @@ module.exports = function (grunt) {
           livereload: '<%= connect.options.livereload %>'
         }
       },
-      // jsTest: {
-      //   files: ['<%= yeoman.test %>/spec/{,*/}*.js'],
-      //   tasks: [
-      //     'newer:jshint:test',
-      //     'karma'
-      //   ]
-      // },
+      jsTest: {
+        files: ['<%= yeoman.test %>/spec/{,*/}*.js'],
+        tasks: [
+          'newer:jshint:test',
+          'karma'
+        ]
+      },
       styles: {
         files: ['<%= yeoman.app %>/css/{,*/}*.css'],
         tasks: [
@@ -512,12 +512,12 @@ module.exports = function (grunt) {
     },
 
     // Test settings
-    // karma: {
-    //   unit: {
-    //     configFile: '<%= yeoman.test %>/karma.conf.js',
-    //     singleRun: true
-    //   }
-    // },
+    karma: {
+      unit: {
+        configFile: '<%= yeoman.test %>/karma.conf.js',
+        singleRun: true
+      }
+    },
     loopback_sdk_angular: {
       services: {
         options: {
@@ -656,7 +656,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    //'test',
+    'test',
     'ngconstant:production',
     'loopback_sdk_angular:production',
     'includeSource:dist',
