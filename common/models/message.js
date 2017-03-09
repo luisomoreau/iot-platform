@@ -4,13 +4,29 @@ var app = require('../../server/server.js');
 
 module.exports = function (Message) {
 
-  var Device = app.models.Device;
-
-  Message.afterRemote('create', function (context, message, next) {
-    console.log('> Message.afterRemote triggered');
+  Message.afterRemote('upsert', function (context, message, next) {
+    var Device = app.models.Device;
+    console.log('> Message.beforeRemote triggered');
     console.log(message);
 
-    message = decodeMessage(message);
+    var device = {
+      id: message.deviceId,
+      creation: message.time
+    };
+    console.log(device);
+
+    Device.findOrCreate(
+      {where: {id: message.deviceId}}, // find
+      device, // create
+      function (err, createdItem, created) {
+        if (err) {
+          console.error('error creating device', err);
+        }
+        (created) ? console.log('created device', createdItem.id)
+          : console.log('found device', createdItem.id);
+      });
+
+    //message = decodeMessage(message);
 
     message.save(function (err, instance) {
       if (err) {

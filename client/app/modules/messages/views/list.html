@@ -41,42 +41,20 @@
       <table datatable="ng" class="table">
         <thead>
         <tr>
-
           <th>Date</th>
           <th>Device Id</th>
-
-          <th>Battery</th>
-          <th>Position</th>
-          <th>GPS acq</th>
-          <th>Sat</th>
-          <th>HDOP</th>
-          <th>Speed</th>
-          <th>RSSI</th>
-          <th>Station</th>
-          <th>Seq Number</th>
-          <!--<th>Action</th>-->
+          <th>Data</th>
+          <th>Spotit</th>
+          <th>Precision</th>
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="message in messages | orderBy:'time'">
           <td>{{message.time * 1000 | date:"yyyy/MM/dd HH:mm:ss"}}</td>
           <td>{{message.deviceId}}</td>
-          <td>{{message.battery}}</td>
-          <td><a ng-click="buildMap(message.id, message.lat, message.long)">{{message.lat | number : 6}} {{message.long
-            | number: 6}}</a></td>
-          <td>{{message.gps_acq}}</td>
-          <td>{{message.sat}}</td>
-          <td>{{message.hdop}}</td>
-          <td>{{message.speed}}</td>
-          <td>{{message.RSSI}}</td>
-          <td>{{message.seqNumber}}</td>
-
-          <!--<td>-->
-            <!--<button type="button" ng-click="deleteMessage(message)"-->
-                    <!--class="btn btn-sm btn-danger">-->
-              <!--<em class="fa fa-trash"></em>-->
-            <!--</button>-->
-          <!--</td>-->
+          <td>{{message.data}}</td>
+          <td>{{message.spotit.lat | number : 6}} {{message.spotit.long | number: 6}}</td>
+          <td>{{message.spotit.precision}}</td>
         </tr>
         </tbody>
       </table>

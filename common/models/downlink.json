@@ -13,27 +13,6 @@
     },
     "payload" :{
       "type": "string"
-    },
-    "encrypt": {
-      "type": "boolean"
-    },
-    "gps_precision": {
-      "type": "string"
-    },
-    "accelero_mode": {
-      "type": "string"
-    },
-    "fix_interval": {
-      "type": "number"
-    },
-    "timeout": {
-      "type": "number"
-    },
-    "dl_interval": {
-      "type": "number"
-    },
-    "no_move_alert_interval": {
-      "type": "number"
     }
   },
   "validations": [],
@@ -47,8 +26,8 @@
     {
       "accessType": "*",
       "principalType": "ROLE",
-      "principalId": "$unauthenticated",
-      "permission": "DENY"
+      "principalId": "everyone",
+      "permission": "ALLOW"
     },
     {
       "accessType": "*",

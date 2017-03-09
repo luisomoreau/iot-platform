@@ -26,21 +26,27 @@
       $scope.count = {};
       $scope.boxes = $rootScope.dashboardBox;
 
-      // ------ Get user role ------
-      // $scope.userId = LoopBackAuth.currentUserId;
-      // console.log($scope.userId);
-      //
-      // User.roles({
-      //     id: $scope.userId
-      //   }, function (items) {
-      //     $scope.roles = items;
-      //     console.log($scope.roles[0].name);
-      //   }, function (err) {
-      //     return err;
-      //   }
-      // )
+      $scope.messages = [];
 
+      getMessages();
 
+      //------------Get Messages---------------
+      // Get Messages
+      function getMessages() {
+        Message.find({
+            filter: {
+              order: 'time DESC'
+            }
+          },
+          function (items) {
+
+            $scope.messages = items;
+            //console.log($scope.messages)
+          },
+          function (errorResponse) { /* error */
+          }
+        );
+      }
 
     });
 

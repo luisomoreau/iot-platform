@@ -13,20 +13,13 @@
       "required": true
     },
     "creation": {
-      "type": "date"
+      "type": "number"
     },
     "name": {
       "type": "string"
     },
-    "last_seen": {
-      "type": "date"
-    },
     "device_type": {
       "type": "string"
-    },
-    "associated": {
-      "type": "boolean",
-      "default": false
     }
   },
   "validations": [],
@@ -45,8 +38,8 @@
     {
       "accessType": "*",
       "principalType": "ROLE",
-      "principalId": "$unauthenticated",
-      "permission": "DENY"
+      "principalId": "everyone",
+      "permission": "ALLOW"
     },
     {
       "accessType": "*",

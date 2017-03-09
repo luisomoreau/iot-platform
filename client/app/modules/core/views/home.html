@@ -22,38 +22,25 @@
           <br>
         </tab>
         <tab heading="Last 100 messages">
-          <div class="row text-center">
-            <p></p>
-            <button class="btn btn-info" ng-click="exportToExcel(messages)">Export as Excel Sheet</button>
-            <p></p>
-          </div>
           <div class="table-responsive">
             <table datatable="ng" class="table">
               <thead>
               <tr>
-
                 <th>Date</th>
                 <th>Device Id</th>
-                <th>Battery</th>
-                <th>Position</th>
-                <th>GPS acq</th>
-                <th>Sat</th>
-                <th>Speed</th>
-                <th>RSSI</th>
+                <th>Data</th>
+                <th>Spotit</th>
+                <th>Precision</th>
               </tr>
               </thead>
               <tbody>
-              <tr ng-repeat="message in messages | orderBy:'-message.time'">
+              <tr ng-repeat="message in messages | orderBy:'time'">
                 <td>{{message.time * 1000 | date:"yyyy/MM/dd HH:mm:ss"}}</td>
                 <td>{{message.deviceId}}</td>
-                <td>{{message.battery}}</td>
-                <td>{{message.lat | number : 6}} {{message.long | number: 6}}</td>
-                <td>{{message.gps_acq}}</td>
-                <td>{{message.sat}}</td>
-                <td>{{message.speed}}</td>
-                <td>{{message.RSSI}}</td>
+                <td>{{message.data}}</td>
+                <td>{{message.spotit.lat | number : 6}} {{message.spotit.long | number: 6}}</td>
+                <td>{{message.spotit.precision}}</td>
               </tr>
-
               </tbody>
             </table>
           </div>
