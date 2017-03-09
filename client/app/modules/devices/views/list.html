@@ -1,0 +1,93 @@
+<!--<div class="row text-center">-->
+  <!--<div class="col col-md-12">-->
+                  <!--<span class="btn-group">-->
+                      <!--<a href="" class="btn btn-info" ng-click="resetDefaultBehaviour(devices)">-->
+                        <!--Reset default devices behaviour <i class="fa fa-edit"></i>-->
+                      <!--</a>-->
+                    <!--</span>-->
+  <!--</div>-->
+<!--</div>-->
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Devices
+  </div>
+  <div class="panel-body">
+
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Creation</th>
+          <!--<th>Last Seen</th>-->
+          <th>Device Type</th>
+          <th>Rhino ID</th>
+          <th>Uplink Freq</th>
+          <th>Downlink Freq</th>
+          <th>GPS Timeout</th>
+          <th>Edit</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="device in devices track by $index" ng-include="getTemplate(device)">
+
+          <script type="text/ng-template" id="display">
+            <td>{{device.id}}</td>
+            <td>{{device.creation | date:"yyyy/MM/dd" }}</td>
+            <!--<td>{{device.last_seen}}</td>-->
+            <td>{{device.device_type}}</td>
+            <td>{{device.rhinoId}}</td>
+            <td>{{device.Downlink ? (device.Downlink.fix_interval + " hours"): ""}}</td>
+            <td>{{device.Downlink ? (device.Downlink.dl_interval * device.Downlink.fix_interval + " hours") : ""}}</td>
+            <td>{{device.Downlink ? (device.Downlink.timeout + " sec") : ""}}</td>
+            <td ng-show="device.Downlink">
+              <button type="button" ng-click="edit(device)"
+                      class="btn btn-sm btn-info">
+                <em class="fa fa-pencil"></em>
+              </button>
+            </td>
+            <td ng-hide="device.Downlink">
+              <button type="button" ng-click="updateDownlink(device)"
+                      class="btn btn-sm btn-success">
+                <em class="fa fa-plus"></em>
+              </button>
+            </td>
+          </script>
+
+          <script type="text/ng-template" id="edit">
+            <td>{{device.id}}</td>
+            <td>{{device.creation | date:"yyyy/MM/dd" }}</td>
+            <!--<td>{{device.last_seen}}</td>-->
+            <td>{{device.device_type}}</td>
+            <td>{{device.rhinoId}}</td>
+            <td>
+              <select ng-model="device.Downlink.fix_interval"
+                        ng-options="uplinkFrequency.value as uplinkFrequency.text for uplinkFrequency in uplinkFrequencies">
+              <option></option>
+              </select>
+            </td>
+            <td><select ng-model="device.Downlink.dl_interval" ng-click="buildDLFrequencies(device)"
+                        ng-options="dlFrequency.value as dlFrequency.text for dlFrequency in dlFrequencies">
+              <option></option>
+            </select></td>
+            <td><select ng-model="device.Downlink.timeout"
+                        ng-options="timeoutValue.value as timeoutValue.text for timeoutValue in timeoutValues">
+              <option></option>
+            </select></td>
+            <td>
+              <button type="button" ng-click="updateDownlink(device)"
+                      class="btn btn-sm btn-success">
+                <em class="fa fa-save"></em>
+              </button>
+            </td>
+          </script>
+
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+</div>
+

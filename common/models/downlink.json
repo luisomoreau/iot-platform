@@ -1,0 +1,67 @@
+{
+  "name": "Downlink",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "id": {
+      "type": "string",
+      "id": true
+    },
+    "payload" :{
+      "type": "string"
+    },
+    "encrypt": {
+      "type": "boolean"
+    },
+    "gps_precision": {
+      "type": "string"
+    },
+    "accelero_mode": {
+      "type": "string"
+    },
+    "fix_interval": {
+      "type": "number"
+    },
+    "timeout": {
+      "type": "number"
+    },
+    "dl_interval": {
+      "type": "number"
+    },
+    "no_move_alert_interval": {
+      "type": "number"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "Device": {
+      "type": "belongsTo",
+      "model": "Device"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$unauthenticated",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "users",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}

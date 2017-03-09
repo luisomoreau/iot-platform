@@ -1,0 +1,82 @@
+{
+  "name": "Message",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "id": {
+      "type": "string",
+      "id": true
+    },
+    "time": {
+      "type": "number"
+    },
+    "data": {
+      "type": "string"
+    },
+    "message_type": {
+      "type": "string"
+    },
+    "lat": {
+      "type": "number"
+    },
+    "long": {
+      "type": "number"
+    },
+    "speed": {
+      "type": "number"
+    },
+    "battery": {
+      "type": "number"
+    },
+    "alerte": {
+      "type": "number"
+    },
+    "RSSI": {
+      "type": "number"
+    },
+    "gps_acq": {
+      "type": "number"
+    },
+    "sat": {
+      "type": "number"
+    },
+    "hdop": {
+      "type": "number"
+    },
+    "seqNumber": {
+      "type": "number"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "Device": {
+      "type": "belongsTo",
+      "model": "Device"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$unauthenticated",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "users",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}

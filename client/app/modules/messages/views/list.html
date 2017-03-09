@@ -1,0 +1,89 @@
+<div class="panel panel-default">
+  <div id="map_canvas2" ng-show="showMap">
+    <ui-gmap-google-map center="map.center" zoom="map.zoom" options="map.options" control="map.control">
+
+      <ui-gmap-window
+        show="map.window.show"
+        coords="map.window.model"
+        options="map.window.options"
+        closeClick="map.window.closeClick()"
+        templateParameter="map.window">
+        <div>
+          <h4>{{map.window.model.title}}</h4>
+          <p>Lat: {{map.window.model.latitude}}</p>
+          <p>Long: {{map.window.model.longitude}}</p>
+          <button class="btn btn-info">Show history</button>
+        </div>
+
+      </ui-gmap-window>
+
+      <ui-gmap-markers
+        models="map.markers"
+        coords="'self'"
+        events="map.markersEvents"
+        options="'options'">
+      </ui-gmap-markers>
+
+    </ui-gmap-google-map>
+
+  </div>
+  <div class="panel-heading">
+    Messages
+    <!--<span class="pull-right btn-group">-->
+    <!--<a href="" class="btn btn-xs btn-success">-->
+    <!--<i class="fa fa-refresh" ng-click="refreshMessageFromBackend()"></i>-->
+    <!--</a>-->
+    <!--</span>-->
+  </div>
+  <div class="panel-body">
+
+    <div class="table-responsive">
+      <table datatable="ng" class="table">
+        <thead>
+        <tr>
+
+          <th>Date</th>
+          <th>Device Id</th>
+
+          <th>Battery</th>
+          <th>Position</th>
+          <th>GPS acq</th>
+          <th>Sat</th>
+          <th>HDOP</th>
+          <th>Speed</th>
+          <th>RSSI</th>
+          <th>Station</th>
+          <th>Seq Number</th>
+          <!--<th>Action</th>-->
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="message in messages | orderBy:'time'">
+          <td>{{message.time * 1000 | date:"yyyy/MM/dd HH:mm:ss"}}</td>
+          <td>{{message.deviceId}}</td>
+          <td>{{message.battery}}</td>
+          <td><a ng-click="buildMap(message.id, message.lat, message.long)">{{message.lat | number : 6}} {{message.long
+            | number: 6}}</a></td>
+          <td>{{message.gps_acq}}</td>
+          <td>{{message.sat}}</td>
+          <td>{{message.hdop}}</td>
+          <td>{{message.speed}}</td>
+          <td>{{message.RSSI}}</td>
+          <td>{{message.seqNumber}}</td>
+
+          <!--<td>-->
+            <!--<button type="button" ng-click="deleteMessage(message)"-->
+                    <!--class="btn btn-sm btn-danger">-->
+              <!--<em class="fa fa-trash"></em>-->
+            <!--</button>-->
+          <!--</td>-->
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+
+</div>
+

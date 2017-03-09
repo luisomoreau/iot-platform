@@ -1,0 +1,7 @@
+{
+  "name": "IoT Platform",
+  "description": "IoT Platformusing Loopback 2.x API based on loopback-angular-admin",
+  "repository": "",
+  "logo": "",
+  "keywords": ["node", "angular", "loopback", "IoT", "api"]
+}

@@ -1,0 +1,65 @@
+<section class="content-header">
+  <div class="pull-right">
+  </div>
+  <h1>
+    {{ 'Home' | translate }}
+    <small translate>Welcome</small>
+  </h1>
+</section>
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <tabset class="nav-tabs-custom">
+        <tab heading="{{ 'Dashboard' | translate }}">
+          <div class="row">
+
+            <small-box name="{{ box.name }}" color="{{ box.color }}" icon="{{ box.icon }}"
+                       quantity="{{ box.quantity }}" href="{{ box.href }}"
+                       ng-repeat="box in boxes | orderBy:['-quantity', 'name']"></small-box>
+
+          </div>
+
+          <br>
+        </tab>
+        <tab heading="Last 100 messages">
+          <div class="row text-center">
+            <p></p>
+            <button class="btn btn-info" ng-click="exportToExcel(messages)">Export as Excel Sheet</button>
+            <p></p>
+          </div>
+          <div class="table-responsive">
+            <table datatable="ng" class="table">
+              <thead>
+              <tr>
+
+                <th>Date</th>
+                <th>Device Id</th>
+                <th>Battery</th>
+                <th>Position</th>
+                <th>GPS acq</th>
+                <th>Sat</th>
+                <th>Speed</th>
+                <th>RSSI</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr ng-repeat="message in messages | orderBy:'-message.time'">
+                <td>{{message.time * 1000 | date:"yyyy/MM/dd HH:mm:ss"}}</td>
+                <td>{{message.deviceId}}</td>
+                <td>{{message.battery}}</td>
+                <td>{{message.lat | number : 6}} {{message.long | number: 6}}</td>
+                <td>{{message.gps_acq}}</td>
+                <td>{{message.sat}}</td>
+                <td>{{message.speed}}</td>
+                <td>{{message.RSSI}}</td>
+              </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </tab>
+      </tabset>
+
+    </div>
+  </div>
+</section>

@@ -1,0 +1,65 @@
+{
+  "name": "Device",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "id": {
+      "type": "string",
+      "id": true,
+      "required": true
+    },
+    "creation": {
+      "type": "date"
+    },
+    "name": {
+      "type": "string"
+    },
+    "last_seen": {
+      "type": "date"
+    },
+    "device_type": {
+      "type": "string"
+    },
+    "associated": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "validations": [],
+  "relations": {
+    "Messages": {
+      "type": "hasMany",
+      "model": "Message"
+    },
+    "Downlink": {
+      "type": "hasOne",
+      "model": "Downlink",
+      "foreignKey": "deviceId"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$unauthenticated",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "users",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}
