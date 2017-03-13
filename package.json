@@ -82,7 +82,8 @@
     "serve-favicon": "2.2.0",
     "serve-static": "^1.10.0",
     "showdown": "0.3.1",
-    "time-grunt": "1.0.0"
+    "time-grunt": "1.0.0",
+    "twitter": "1.7.0"
   },
   "devDependencies": {
     "browserify": "8.1.3",

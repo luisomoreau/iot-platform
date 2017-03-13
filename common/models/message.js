@@ -37,21 +37,12 @@ module.exports = function (Message) {
       }
     });
 
+    if(message.twit){
+      twit(message);
+    }
+
     next();
   });
-
-  Message.remoteMethod(
-    'twitterbird',
-    {
-      accepts: { arg: 'data', type: 'object', http: { source: 'body' }},
-      http: {path: '/twitterbird', verb: 'post'},
-      returns: {arg: 'deviceId', type: 'Object', root: true}
-    }
-  );
-
-  Message.twitterbird = function (data, cb) {
-      twit(data.message);
-  }
 };
 
 
@@ -187,15 +178,15 @@ function twit(message){
     consumer_key: process.env.TWITTER_CONSUMER_KEY,
     consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
     access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
-    access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
+    access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
   });
 
-  var status = "Hello World";
+  var status = message.data;
 
   client.post('statuses/update', {status: status},  function(error, tweet, response){
     if(error) console.log(error);
-    console.log(tweet);  // Tweet body.
-    console.log(response);  // Raw response object.
+    console.log("tweet:",tweet);  // Tweet body.
+    //console.log(response);  // Raw response object.
   });
 
 }

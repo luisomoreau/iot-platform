@@ -694,7 +694,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('gettext', [
     'nggettext_extract',
-    'nggettext_compile',
+    'nggettext_compile'
   ]);
 
   grunt.registerTask('includesource', [

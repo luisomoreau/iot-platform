@@ -21,3 +21,4 @@ client/coverage
 .config
 .npm
 .DS_Store
+.env
