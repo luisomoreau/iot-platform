@@ -28,9 +28,9 @@ module.exports = function(app) {
   try {
     config = require('../../providers.json');
   } catch (err) {
-    console.error(
+    console.log(
       'Please configure your passport strategy in `providers.json`.');
-    console.error(
+    console.log(
       'Copy `providers.json.template` to `providers.json` and replace the clientID/clientSecret values with your own.'
     );
   }
