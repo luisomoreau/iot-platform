@@ -79,6 +79,7 @@
     "passport-local": "1.0.0",
     "passport-oauth2": "1.1.2",
     "passport-twitter": "1.0.2",
+    "path": "0.12.7",
     "serve-favicon": "2.2.0",
     "serve-static": "^1.10.0",
     "showdown": "0.3.1",
