@@ -73,5 +73,9 @@
   "Downlink": {
     "dataSource": "db",
     "public": true
+  },
+  "Parser": {
+    "dataSource": "db",
+    "public": true
   }
 }

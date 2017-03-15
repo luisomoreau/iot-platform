@@ -20,6 +20,11 @@
     },
     "device_type": {
       "type": "string"
+    },
+    "parsers": {
+      "type": [
+        "Parser"
+      ]
     }
   },
   "validations": [],
