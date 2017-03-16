@@ -15,6 +15,28 @@
                         controllerAs: 'ctrl',
                         controller: 'DevicesCtrl'
                     })
+                  .state('app.devices.edit', {
+                    url: '/:id/edit',
+                    templateUrl: 'modules/devices/views/edit.html',
+                    controllerAs: 'ctrl',
+                    controller: function ($state, Device, device) {
+                      console.log(device);
+                      this.device = device;
+                      this.submit = function () {
+                        device.$save().then(function () {
+                          $state.go('^.list');
+                        });
+                      };
+                    },
+                    resolve: {
+                      device: function ($stateParams, Device) {
+                        console.log($stateParams.id);
+                        return Device.findById({
+                          id: $stateParams.id
+                        }).$promise;
+                      }
+                    }
+                  })
             }
         );
 

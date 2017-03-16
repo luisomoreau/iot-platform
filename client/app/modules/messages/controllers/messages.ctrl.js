@@ -4,11 +4,10 @@
     .module('com.module.messages')
     .controller('MessagesCtrl', function (CoreService, $state, $scope, Message, Device, uiGmapGoogleMapApi, uiGmapIsReady) {
 
+      //------------Get Messages---------------
+
       $scope.messages = [];
 
-      getMessages();
-
-      //------------Get Messages---------------
       // Get Messages
       function getMessages() {
         Message.find({
@@ -25,6 +24,13 @@
           }
         );
       }
+
+      getMessages();
+
+      $scope.refreshMessages = function(){
+        getMessages()
+      }
+
 
       // ------- Delete Message --------
 
@@ -52,6 +58,75 @@
           }
         );
       }
+
+      // ------------- Maps ---------------
+
+      $scope.loadMap = function (markers) {
+
+        // Map functions
+        uiGmapGoogleMapApi.then(function (maps) {
+          $scope.map.window.options.pixelOffset = new google.maps.Size(0, -35, 'px', 'px');
+        });
+
+        $scope.map = {
+          center: {
+            latitude: markers[0].latitude,
+            longitude: markers[0].longitude
+          },
+          zoom: 12,
+          options: {
+            streetViewControl: false,
+            scrollwheel: false,
+            scaleControl: true,
+            mapTypeId: google.maps.MapTypeId.TERRAIN
+          },
+          control: {},
+          markers: markers,
+          markersEvents: {
+            click: function (marker, eventName, model) {
+              $scope.map.window.model = model;
+              $scope.map.window.show = true;
+            },
+            showHistory: function () {
+              console.log(model);
+            }
+          },
+          window: {
+            marker: {},
+            show: false,
+            closeClick: function () {
+              this.show = false;
+            },
+            options: {}
+          }
+        };
+      }
+
+      $scope.buildMap = function (id, lat, long) {
+        console.log('build map');
+        $scope.markers = [
+          {
+            id: id,
+            latitude: lat,
+            longitude: long
+          }
+        ];
+        $scope.showMap = true;
+        $scope.loadMap($scope.markers);
+      }
+
+      $scope.showMap = false;
+
+      uiGmapIsReady.promise(1).then(function(instances) {
+        instances.forEach(function(inst) {
+          var map = inst.map;
+          console.log(map);
+          var uuid = map.uiGmap_id;
+          console.log(uuid);
+          var mapInstanceNumber = inst.instance; // Starts at 1.
+          console.log(mapInstanceNumber);
+        });
+      });
 
     });
 })();

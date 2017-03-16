@@ -1,15 +1,15 @@
 <!--<div class="row text-center">-->
 <!--<div class="col col-md-12">-->
 <!--<span class="btn-group">-->
-<!--<a href="" class="btn btn-info" ng-click="resetDefaultBehaviour(devices)">-->
-<!--Reset default devices behaviour <i class="fa fa-edit"></i>-->
+<!--<a href="" class="btn btn-info" ng-click="resetDefaultBehaviour(parsers)">-->
+<!--Reset default parsers behaviour <i class="fa fa-edit"></i>-->
 <!--</a>-->
 <!--</span>-->
 <!--</div>-->
 <!--</div>-->
 <div class="panel panel-default">
   <div class="panel-heading">
-    Devices
+    Parsers
   </div>
   <div class="panel-body">
 
@@ -26,13 +26,13 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="device in devices">
-          <td>{{device.id}}</td>
-          <td>{{device.name}}</td>
-          <td>{{device.creation * 1000 | date:"yyyy/MM/dd" }}</td>
-          <td>{{device.parser}}</td>
+        <tr ng-repeat="parser in parsers">
+          <td>{{parser.id}}</td>
+          <td>{{parser.name}}</td>
+          <td>{{parser.creation * 1000 | date:"yyyy/MM/dd" }}</td>
+          <td>{{parser.parser}}</td>
           <td>
-            <a href="" class="btn btn-xs btn-default" ui-sref="^.edit({id: device.id})">
+            <a href="" class="btn btn-xs btn-default" ui-sref="^.edit({id: parser.id})">
               <i class="fa fa-pencil"></i>
             </a>
           </td>

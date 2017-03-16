@@ -44,6 +44,7 @@
             'com.module.core',
             'com.module.devices',
             'com.module.messages',
+            'com.module.parsers',
             'com.module.users',
             'com.module.browser',
             'com.module.files',

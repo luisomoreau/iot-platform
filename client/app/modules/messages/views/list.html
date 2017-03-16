@@ -29,11 +29,7 @@
   </div>
   <div class="panel-heading">
     Messages
-    <!--<span class="pull-right btn-group">-->
-    <!--<a href="" class="btn btn-xs btn-success">-->
-    <!--<i class="fa fa-refresh" ng-click="refreshMessageFromBackend()"></i>-->
-    <!--</a>-->
-    <!--</span>-->
+    <button class="btn btn-xs btn-default" ng-click="refreshMessages()"><i class="fa fa-refresh"></i></button>
   </div>
   <div class="panel-body">
 
@@ -44,8 +40,7 @@
           <th>Date</th>
           <th>Device Id</th>
           <th>Data</th>
-          <th>Spotit</th>
-          <th>Precision</th>
+          <th>Spotit (precision)</th>
         </tr>
         </thead>
         <tbody>
@@ -53,8 +48,7 @@
           <td>{{message.time * 1000 | date:"yyyy/MM/dd HH:mm:ss"}}</td>
           <td>{{message.deviceId}}</td>
           <td>{{message.data}}</td>
-          <td>{{message.spotit.lat | number : 6}} {{message.spotit.long | number: 6}}</td>
-          <td>{{message.spotit.precision}}</td>
+          <td><a ng-click="buildMap(message.id, message.spotit.lat, message.spotit.long, message.spotit.precision)">{{message.spotit.lat | number : 6}} {{message.spotit.long | number: 6}}</a> ({{message.spotit.precision}}m)</td>
         </tr>
         </tbody>
       </table>

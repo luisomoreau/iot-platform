@@ -22,3 +22,4 @@ docs
 .npm
 .DS_Store
 .env
+!dist/favicon.ico

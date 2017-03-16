@@ -26,28 +26,6 @@
       $scope.count = {};
       $scope.boxes = $rootScope.dashboardBox;
 
-      $scope.messages = [];
-
-      getMessages();
-
-      //------------Get Messages---------------
-      // Get Messages
-      function getMessages() {
-        Message.find({
-            filter: {
-              order: 'time DESC'
-            }
-          },
-          function (items) {
-
-            $scope.messages = items;
-            //console.log($scope.messages)
-          },
-          function (errorResponse) { /* error */
-          }
-        );
-      }
-
     });
 
 })();
