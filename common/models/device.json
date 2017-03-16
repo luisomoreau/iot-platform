@@ -33,6 +33,11 @@
       "type": "hasMany",
       "model": "Message"
     },
+    "Parser": {
+      "type": "hasOne",
+      "model": "Parser",
+      "foreignKey": "parserId"
+    },
     "Downlink": {
       "type": "hasOne",
       "model": "Downlink",

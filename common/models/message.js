@@ -28,6 +28,7 @@ module.exports = function (Message) {
       });
 
     //message = decodeMessage(message);
+    message = parsePayload(message);
 
     message.save(function (err, instance) {
       if (err) {
@@ -37,9 +38,11 @@ module.exports = function (Message) {
       }
     });
 
-    if(message.twit){
+    if(message.tweet){
       twit(message);
     }
+
+
 
     next();
   });
@@ -189,4 +192,11 @@ function twit(message){
     //console.log(response);  // Raw response object.
   });
 
+}
+
+function parsePayload(message){
+
+
+
+  return message;
 }

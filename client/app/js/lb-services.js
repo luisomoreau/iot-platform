@@ -9394,6 +9394,30 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
               method: "DELETE",
             },
 
+            // INTERNAL. Use Device.Parser() instead.
+            "prototype$__get__Parser": {
+              url: urlBase + "/Devices/:id/Parser",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Device.Parser.create() instead.
+            "prototype$__create__Parser": {
+              url: urlBase + "/Devices/:id/Parser",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Device.Parser.update() instead.
+            "prototype$__update__Parser": {
+              url: urlBase + "/Devices/:id/Parser",
+              method: "PUT",
+            },
+
+            // INTERNAL. Use Device.Parser.destroy() instead.
+            "prototype$__destroy__Parser": {
+              url: urlBase + "/Devices/:id/Parser",
+              method: "DELETE",
+            },
+
             // INTERNAL. Use Device.Messages() instead.
             "prototype$__get__Messages": {
               isArray: true,
@@ -9962,6 +9986,65 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
             // INTERNAL. Use Downlink.Device() instead.
             "::get::Downlink::Device": {
               url: urlBase + "/Downlinks/:id/Device",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Parser.Devices.findById() instead.
+            "::findById::Parser::Devices": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Parsers/:id/Devices/:fk",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Parser.Devices.destroyById() instead.
+            "::destroyById::Parser::Devices": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Parsers/:id/Devices/:fk",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Parser.Devices.updateById() instead.
+            "::updateById::Parser::Devices": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Parsers/:id/Devices/:fk",
+              method: "PUT",
+            },
+
+            // INTERNAL. Use Parser.Devices() instead.
+            "::get::Parser::Devices": {
+              isArray: true,
+              url: urlBase + "/Parsers/:id/Devices",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Parser.Devices.create() instead.
+            "::create::Parser::Devices": {
+              url: urlBase + "/Parsers/:id/Devices",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Parser.Devices.createMany() instead.
+            "::createMany::Parser::Devices": {
+              isArray: true,
+              url: urlBase + "/Parsers/:id/Devices",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Parser.Devices.destroyAll() instead.
+            "::delete::Parser::Devices": {
+              url: urlBase + "/Parsers/:id/Devices",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Parser.Devices.count() instead.
+            "::count::Parser::Devices": {
+              url: urlBase + "/Parsers/:id/Devices/count",
               method: "GET",
             },
           }
@@ -10705,6 +10788,201 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
         R.Downlink.update = function() {
           var TargetResource = $injector.get("Downlink");
           var action = TargetResource["::update::Device::Downlink"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.Device.Parser
+     * @header lbServices.Device.Parser
+     * @object
+     * @description
+     *
+     * The object `Device.Parser` groups methods
+     * manipulating `Parser` instances related to `Device`.
+     *
+     * Call {@link lbServices.Device#Parser Device.Parser()}
+     * to query all related instances.
+     */
+
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Device#Parser
+             * @methodOf lbServices.Device
+             *
+             * @description
+             *
+             * Fetches hasOne relation Parser.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Device id
+             *
+             *  - `refresh` – `{boolean=}` -
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Parser` object.)
+             * </em>
+             */
+        R.Parser = function() {
+          var TargetResource = $injector.get("Parser");
+          var action = TargetResource["::get::Device::Parser"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Device.Parser#create
+             * @methodOf lbServices.Device.Parser
+             *
+             * @description
+             *
+             * Creates a new instance in Parser of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Device id
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Parser` object.)
+             * </em>
+             */
+        R.Parser.create = function() {
+          var TargetResource = $injector.get("Parser");
+          var action = TargetResource["::create::Device::Parser"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Device.Parser#createMany
+             * @methodOf lbServices.Device.Parser
+             *
+             * @description
+             *
+             * Creates a new instance in Parser of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Device id
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Parser` object.)
+             * </em>
+             */
+        R.Parser.createMany = function() {
+          var TargetResource = $injector.get("Parser");
+          var action = TargetResource["::createMany::Device::Parser"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Device.Parser#destroy
+             * @methodOf lbServices.Device.Parser
+             *
+             * @description
+             *
+             * Deletes Parser of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Device id
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * This method returns no data.
+             */
+        R.Parser.destroy = function() {
+          var TargetResource = $injector.get("Parser");
+          var action = TargetResource["::destroy::Device::Parser"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Device.Parser#update
+             * @methodOf lbServices.Device.Parser
+             *
+             * @description
+             *
+             * Update Parser of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Device id
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Parser` object.)
+             * </em>
+             */
+        R.Parser.update = function() {
+          var TargetResource = $injector.get("Parser");
+          var action = TargetResource["::update::Device::Parser"];
           return action.apply(R, arguments);
         };
 
@@ -12534,6 +12812,1202 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
         R.Device = function() {
           var TargetResource = $injector.get("Device");
           var action = TargetResource["::get::Downlink::Device"];
+          return action.apply(R, arguments);
+        };
+
+
+        return R;
+      }]);
+
+/**
+ * @ngdoc object
+ * @name lbServices.Parser
+ * @header lbServices.Parser
+ * @object
+ *
+ * @description
+ *
+ * A $resource object for interacting with the `Parser` model.
+ *
+ * ## Example
+ *
+ * See
+ * {@link http://docs.angularjs.org/api/ngResource.$resource#example $resource}
+ * for an example of using this object.
+ *
+ */
+  module.factory(
+    "Parser",
+    [
+      'LoopBackResource', 'LoopBackAuth', '$injector', '$q',
+      function(LoopBackResource, LoopBackAuth, $injector, $q) {
+        var R = LoopBackResource(
+        urlBase + "/Parsers/:id",
+          { 'id': '@id' },
+          {
+
+            // INTERNAL. Use Parser.Devices.findById() instead.
+            "prototype$__findById__Devices": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Parsers/:id/Devices/:fk",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Parser.Devices.destroyById() instead.
+            "prototype$__destroyById__Devices": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Parsers/:id/Devices/:fk",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Parser.Devices.updateById() instead.
+            "prototype$__updateById__Devices": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Parsers/:id/Devices/:fk",
+              method: "PUT",
+            },
+
+            // INTERNAL. Use Parser.Devices() instead.
+            "prototype$__get__Devices": {
+              isArray: true,
+              url: urlBase + "/Parsers/:id/Devices",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Parser.Devices.create() instead.
+            "prototype$__create__Devices": {
+              url: urlBase + "/Parsers/:id/Devices",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Parser.Devices.destroyAll() instead.
+            "prototype$__delete__Devices": {
+              url: urlBase + "/Parsers/:id/Devices",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Parser.Devices.count() instead.
+            "prototype$__count__Devices": {
+              url: urlBase + "/Parsers/:id/Devices/count",
+              method: "GET",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Parser#create
+             * @methodOf lbServices.Parser
+             *
+             * @description
+             *
+             * Create a new instance of the model and persist it into the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *   This method does not accept any parameters.
+             *   Supply an empty object or omit this argument altogether.
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Parser` object.)
+             * </em>
+             */
+            "create": {
+              url: urlBase + "/Parsers",
+              method: "POST",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Parser#createMany
+             * @methodOf lbServices.Parser
+             *
+             * @description
+             *
+             * Create a new instance of the model and persist it into the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *   This method does not accept any parameters.
+             *   Supply an empty object or omit this argument altogether.
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Parser` object.)
+             * </em>
+             */
+            "createMany": {
+              isArray: true,
+              url: urlBase + "/Parsers",
+              method: "POST",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Parser#upsert
+             * @methodOf lbServices.Parser
+             *
+             * @description
+             *
+             * Patch an existing model instance or insert a new one into the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *   This method does not accept any parameters.
+             *   Supply an empty object or omit this argument altogether.
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Parser` object.)
+             * </em>
+             */
+            "upsert": {
+              url: urlBase + "/Parsers",
+              method: "PUT",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Parser#replaceOrCreate
+             * @methodOf lbServices.Parser
+             *
+             * @description
+             *
+             * Replace an existing model instance or insert a new one into the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *   This method does not accept any parameters.
+             *   Supply an empty object or omit this argument altogether.
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Parser` object.)
+             * </em>
+             */
+            "replaceOrCreate": {
+              url: urlBase + "/Parsers/replaceOrCreate",
+              method: "POST",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Parser#upsertWithWhere
+             * @methodOf lbServices.Parser
+             *
+             * @description
+             *
+             * Update an existing model instance or insert a new one into the data source based on the where criteria.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `where` – `{object=}` - Criteria to match model instances
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Parser` object.)
+             * </em>
+             */
+            "upsertWithWhere": {
+              url: urlBase + "/Parsers/upsertWithWhere",
+              method: "POST",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Parser#exists
+             * @methodOf lbServices.Parser
+             *
+             * @description
+             *
+             * Check whether a model instance exists in the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Model id
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `exists` – `{boolean=}` -
+             */
+            "exists": {
+              url: urlBase + "/Parsers/:id/exists",
+              method: "GET",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Parser#findById
+             * @methodOf lbServices.Parser
+             *
+             * @description
+             *
+             * Find a model instance by {{id}} from the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Model id
+             *
+             *  - `filter` – `{object=}` - Filter defining fields and include
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Parser` object.)
+             * </em>
+             */
+            "findById": {
+              url: urlBase + "/Parsers/:id",
+              method: "GET",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Parser#replaceById
+             * @methodOf lbServices.Parser
+             *
+             * @description
+             *
+             * Replace attributes for a model instance and persist it into the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Model id
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Parser` object.)
+             * </em>
+             */
+            "replaceById": {
+              url: urlBase + "/Parsers/:id/replace",
+              method: "POST",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Parser#find
+             * @methodOf lbServices.Parser
+             *
+             * @description
+             *
+             * Find all instances of the model matched by filter from the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `filter` – `{object=}` - Filter defining fields, where, include, order, offset, and limit
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Parser` object.)
+             * </em>
+             */
+            "find": {
+              isArray: true,
+              url: urlBase + "/Parsers",
+              method: "GET",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Parser#findOne
+             * @methodOf lbServices.Parser
+             *
+             * @description
+             *
+             * Find first instance of the model matched by filter from the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `filter` – `{object=}` - Filter defining fields, where, include, order, offset, and limit
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Parser` object.)
+             * </em>
+             */
+            "findOne": {
+              url: urlBase + "/Parsers/findOne",
+              method: "GET",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Parser#updateAll
+             * @methodOf lbServices.Parser
+             *
+             * @description
+             *
+             * Update instances of the model matched by {{where}} from the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `where` – `{object=}` - Criteria to match model instances
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Information related to the outcome of the operation
+             */
+            "updateAll": {
+              url: urlBase + "/Parsers/update",
+              method: "POST",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Parser#deleteById
+             * @methodOf lbServices.Parser
+             *
+             * @description
+             *
+             * Delete a model instance by {{id}} from the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Model id
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Parser` object.)
+             * </em>
+             */
+            "deleteById": {
+              url: urlBase + "/Parsers/:id",
+              method: "DELETE",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Parser#count
+             * @methodOf lbServices.Parser
+             *
+             * @description
+             *
+             * Count instances of the model matched by where from the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `where` – `{object=}` - Criteria to match model instances
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `count` – `{number=}` -
+             */
+            "count": {
+              url: urlBase + "/Parsers/count",
+              method: "GET",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Parser#prototype$updateAttributes
+             * @methodOf lbServices.Parser
+             *
+             * @description
+             *
+             * Patch attributes for a model instance and persist it into the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Parser id
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Parser` object.)
+             * </em>
+             */
+            "prototype$updateAttributes": {
+              url: urlBase + "/Parsers/:id",
+              method: "PUT",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Parser#createChangeStream
+             * @methodOf lbServices.Parser
+             *
+             * @description
+             *
+             * Create a change stream.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *   This method does not accept any parameters.
+             *   Supply an empty object or omit this argument altogether.
+             *
+             * @param {Object} postData Request data.
+             *
+             *  - `options` – `{object=}` -
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `changes` – `{ReadableStream=}` -
+             */
+            "createChangeStream": {
+              url: urlBase + "/Parsers/change-stream",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Device.Parser() instead.
+            "::get::Device::Parser": {
+              url: urlBase + "/Devices/:id/Parser",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Device.Parser.create() instead.
+            "::create::Device::Parser": {
+              url: urlBase + "/Devices/:id/Parser",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Device.Parser.createMany() instead.
+            "::createMany::Device::Parser": {
+              isArray: true,
+              url: urlBase + "/Devices/:id/Parser",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Device.Parser.update() instead.
+            "::update::Device::Parser": {
+              url: urlBase + "/Devices/:id/Parser",
+              method: "PUT",
+            },
+
+            // INTERNAL. Use Device.Parser.destroy() instead.
+            "::destroy::Device::Parser": {
+              url: urlBase + "/Devices/:id/Parser",
+              method: "DELETE",
+            },
+          }
+        );
+
+
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Parser#patchOrCreate
+             * @methodOf lbServices.Parser
+             *
+             * @description
+             *
+             * Patch an existing model instance or insert a new one into the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *   This method does not accept any parameters.
+             *   Supply an empty object or omit this argument altogether.
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Parser` object.)
+             * </em>
+             */
+        R["patchOrCreate"] = R["upsert"];
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Parser#updateOrCreate
+             * @methodOf lbServices.Parser
+             *
+             * @description
+             *
+             * Patch an existing model instance or insert a new one into the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *   This method does not accept any parameters.
+             *   Supply an empty object or omit this argument altogether.
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Parser` object.)
+             * </em>
+             */
+        R["updateOrCreate"] = R["upsert"];
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Parser#patchOrCreateWithWhere
+             * @methodOf lbServices.Parser
+             *
+             * @description
+             *
+             * Update an existing model instance or insert a new one into the data source based on the where criteria.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `where` – `{object=}` - Criteria to match model instances
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Parser` object.)
+             * </em>
+             */
+        R["patchOrCreateWithWhere"] = R["upsertWithWhere"];
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Parser#update
+             * @methodOf lbServices.Parser
+             *
+             * @description
+             *
+             * Update instances of the model matched by {{where}} from the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `where` – `{object=}` - Criteria to match model instances
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Information related to the outcome of the operation
+             */
+        R["update"] = R["updateAll"];
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Parser#destroyById
+             * @methodOf lbServices.Parser
+             *
+             * @description
+             *
+             * Delete a model instance by {{id}} from the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Model id
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Parser` object.)
+             * </em>
+             */
+        R["destroyById"] = R["deleteById"];
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Parser#removeById
+             * @methodOf lbServices.Parser
+             *
+             * @description
+             *
+             * Delete a model instance by {{id}} from the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Model id
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Parser` object.)
+             * </em>
+             */
+        R["removeById"] = R["deleteById"];
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Parser#patchAttributes
+             * @methodOf lbServices.Parser
+             *
+             * @description
+             *
+             * Patch attributes for a model instance and persist it into the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Parser id
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Parser` object.)
+             * </em>
+             */
+        R["patchAttributes"] = R["prototype$updateAttributes"];
+
+
+        /**
+        * @ngdoc property
+        * @name lbServices.Parser#modelName
+        * @propertyOf lbServices.Parser
+        * @description
+        * The name of the model represented by this $resource,
+        * i.e. `Parser`.
+        */
+        R.modelName = "Parser";
+
+    /**
+     * @ngdoc object
+     * @name lbServices.Parser.Devices
+     * @header lbServices.Parser.Devices
+     * @object
+     * @description
+     *
+     * The object `Parser.Devices` groups methods
+     * manipulating `Device` instances related to `Parser`.
+     *
+     * Call {@link lbServices.Parser#Devices Parser.Devices()}
+     * to query all related instances.
+     */
+
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Parser#Devices
+             * @methodOf lbServices.Parser
+             *
+             * @description
+             *
+             * Queries Devices of Parser.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Parser id
+             *
+             *  - `filter` – `{object=}` -
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Device` object.)
+             * </em>
+             */
+        R.Devices = function() {
+          var TargetResource = $injector.get("Device");
+          var action = TargetResource["::get::Parser::Devices"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Parser.Devices#count
+             * @methodOf lbServices.Parser.Devices
+             *
+             * @description
+             *
+             * Counts Devices of Parser.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Parser id
+             *
+             *  - `where` – `{object=}` - Criteria to match model instances
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `count` – `{number=}` -
+             */
+        R.Devices.count = function() {
+          var TargetResource = $injector.get("Device");
+          var action = TargetResource["::count::Parser::Devices"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Parser.Devices#create
+             * @methodOf lbServices.Parser.Devices
+             *
+             * @description
+             *
+             * Creates a new instance in Devices of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Parser id
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Device` object.)
+             * </em>
+             */
+        R.Devices.create = function() {
+          var TargetResource = $injector.get("Device");
+          var action = TargetResource["::create::Parser::Devices"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Parser.Devices#createMany
+             * @methodOf lbServices.Parser.Devices
+             *
+             * @description
+             *
+             * Creates a new instance in Devices of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Parser id
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Device` object.)
+             * </em>
+             */
+        R.Devices.createMany = function() {
+          var TargetResource = $injector.get("Device");
+          var action = TargetResource["::createMany::Parser::Devices"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Parser.Devices#destroyAll
+             * @methodOf lbServices.Parser.Devices
+             *
+             * @description
+             *
+             * Deletes all Devices of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Parser id
+             *
+             *  - `where` – `{object=}` -
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * This method returns no data.
+             */
+        R.Devices.destroyAll = function() {
+          var TargetResource = $injector.get("Device");
+          var action = TargetResource["::delete::Parser::Devices"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Parser.Devices#destroyById
+             * @methodOf lbServices.Parser.Devices
+             *
+             * @description
+             *
+             * Delete a related item by id for Devices.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Parser id
+             *
+             *  - `fk` – `{*}` - Foreign key for Devices
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * This method returns no data.
+             */
+        R.Devices.destroyById = function() {
+          var TargetResource = $injector.get("Device");
+          var action = TargetResource["::destroyById::Parser::Devices"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Parser.Devices#findById
+             * @methodOf lbServices.Parser.Devices
+             *
+             * @description
+             *
+             * Find a related item by id for Devices.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Parser id
+             *
+             *  - `fk` – `{*}` - Foreign key for Devices
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Device` object.)
+             * </em>
+             */
+        R.Devices.findById = function() {
+          var TargetResource = $injector.get("Device");
+          var action = TargetResource["::findById::Parser::Devices"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Parser.Devices#updateById
+             * @methodOf lbServices.Parser.Devices
+             *
+             * @description
+             *
+             * Update a related item by id for Devices.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Parser id
+             *
+             *  - `fk` – `{*}` - Foreign key for Devices
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Device` object.)
+             * </em>
+             */
+        R.Devices.updateById = function() {
+          var TargetResource = $injector.get("Device");
+          var action = TargetResource["::updateById::Parser::Devices"];
           return action.apply(R, arguments);
         };
 

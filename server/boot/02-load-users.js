@@ -46,7 +46,7 @@ module.exports = function(app) {
         {name: role.name}, // create
         function(err, createdRole, created) {
           if (err) {
-            console.error('error running findOrCreate('+role.name+')', err);
+            console.log('error running findOrCreate('+role.name+')', err);
           }
           (created) ? log('created role', createdRole.name)
                     : log('found role', createdRole.name);
@@ -56,7 +56,7 @@ module.exports = function(app) {
               roleUser, // create
               function(err, createdUser, created) {
                 if (err) {
-                  console.error('error creating roleUser', err);
+                  console.log('error creating roleUser', err);
                 }
                 (created) ? log('created user', createdUser.username)
                           : log('found user', createdUser.username);
@@ -65,7 +65,7 @@ module.exports = function(app) {
                   principalId: createdUser.id
                 }, function(err, rolePrincipal) {
                   if (err) {
-                    console.error('error creating rolePrincipal', err);
+                    console.log('error creating rolePrincipal', err);
                   }
                   users.push(createdUser);
                 });
