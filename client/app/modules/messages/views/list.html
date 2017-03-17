@@ -57,9 +57,9 @@
           <td>{{message.data}}</td>
           <td>{{message.parser}}<small ng-repeat="item in message.parsedData" ng-show="expandParsedData"><br>{{item.key}}: {{item.value}}</small></td>
           <td>
-            <p ng-show="message.geoloc.spotit">Spotit: <a ng-click="buildMap(message.id, message.geoloc.spotit.lat, message.geoloc.spotit.long, message.geoloc.spotit.precision)">
-            {{message.geoloc.spotit.lat | number : 6}} {{message.geoloc.spotit.long | number: 6}}</a>
-            {{message.geoloc.spotit.precision ? "(" + message.geoloc.spotit.precision + "m)" : ""}}
+            <p ng-show="message.spotit">Spotit: <a ng-click="buildMap(message.id, message.spotit.lat, message.spotit.long, message.spotit.precision)">
+            {{message.spotit.lat | number : 6}} {{message.spotit.long | number: 6}}</a>
+            {{message.spotit.precision ? "(" + message.spotit.precision + "m)" : ""}}
             </p>
             <p ng-show="message.geoloc.wifi">Wifi: <a ng-click="buildMap(message.id, message.geoloc.wifi.lat, message.geoloc.wifi.long, message.geoloc.wifi.precision)">
               {{message.geoloc.wifi.lat | number : 6}} {{message.geoloc.wifi.long | number: 6}}</a>

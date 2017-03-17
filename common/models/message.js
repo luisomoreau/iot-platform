@@ -121,7 +121,9 @@ function parsePayload(message){
     function (err, device) {
       if(device){
         //console.log(device.parser.name);
-        message.parser = device.parser.name;
+        if(device.parser){
+          message.parser = device.parser.name;
+
         switch (device.parser.name){
           case "Sensit":
             //message = decodeSentit(message);
@@ -143,7 +145,7 @@ function parsePayload(message){
           console.log(instance);
         }
       });
-  });
+  }});
 }
 
 function decodeTutoGPS(message) {

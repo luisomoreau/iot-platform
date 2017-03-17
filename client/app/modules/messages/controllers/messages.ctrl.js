@@ -81,7 +81,7 @@
             latitude: markers[0].latitude,
             longitude: markers[0].longitude
           },
-          zoom: 12,
+          zoom: 14,
           options: {
             streetViewControl: false,
             scrollwheel: false,
