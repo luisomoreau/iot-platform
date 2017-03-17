@@ -284,6 +284,51 @@ function decodeGeolocWifi(message){
     obj.value = decode[1];
     message.parsedData.push(obj);
     obj = {};
+
+    const geolocation = require ('google-geolocation') ({
+      key: process.env.GOOGLE_KEY
+    });
+
+    // Configure API parameters
+    const params = {
+      wifiAccessPoints: [
+        {macAddress: decode[0]},
+        {macAddress: decode[1]}
+      ]
+    };
+
+    // Get data
+    geolocation (params, (err, data) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      console.log(data);
+
+      obj.key = "lat";
+      obj.value = data.location.lat;
+      message.parsedData.push(obj);
+      obj = {};
+
+      obj.key = "long";
+      obj.value = data.location.lng;
+      message.parsedData.push(obj);
+      obj = {};
+
+      obj.key = "accuracy";
+      obj.value = data.accuracy;
+      message.parsedData.push(obj);
+      obj = {};
+
+      message.save(function (err, instance) {
+        if (err) {
+          console.log(err);
+        } else {
+          //console.log(instance);
+        }
+      });
+
+    });
   }
 
   return message;
