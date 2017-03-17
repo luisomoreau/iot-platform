@@ -53,10 +53,10 @@ module.exports = function (Message) {
 function getBinaryFrame(frameHex) {
 //  console.log('getFrameBinary', frameHex);
   var bytes = frameHex.match(/.{1,2}/g);
-  if (bytes.length !== 12) {
-    //console.log('Invalid frame, got %s bytes', bytes.length);
-    return null;
-  }
+  // if (bytes.length !== 12) {
+  //   console.log('Invalid frame, got %s bytes', bytes.length);
+  //   return null;
+  // }
   var binaryString = '';
   bytes.forEach(function (byte) {
     binaryString += getBinaryFromHex(byte);
@@ -126,7 +126,7 @@ function parsePayload(message){
 
         switch (device.parser.name){
           case "Sensit":
-            //message = decodeSentit(message);
+            message = decodeSentit(message);
             break;
           case "Tuto GPS":
             message = decodeTutoGPS(message);
@@ -146,6 +146,93 @@ function parsePayload(message){
         }
       });
   }});
+}
+
+function decodeSentit(message){
+
+  message.parsedData = [];
+  var obj = {};
+
+  var framePattern = /(.{1})(.{2})(.{2})(.{3})(.{4})(.{4})/;
+  var binaryFrame = getBinaryFrame(message.data);
+  var frame = framePattern.exec(binaryFrame);
+
+  console.log(frame);
+
+  var type = parseInt(frame[2],2);
+  obj.key = "type";
+  switch (mode){
+    case 0:
+      obj.value = "regular";
+      break;
+    case 1:
+      obj.value = "button call";
+      break;
+    case 2:
+      obj.value = "alert";
+      break;
+    case 3:
+      obj.value = "new mode";
+      break;
+  }
+  message.parsedData.push(obj);
+  obj = {};
+
+  var timeframe = parseInt(frame[3],2);
+  obj.key = "timeframe";
+  switch (mode){
+    case 0:
+      obj.value = "10 min";
+      break;
+    case 1:
+      obj.value = "1 hour";
+      break;
+    case 2:
+      obj.value = "6 hours";
+      break;
+    case 3:
+      obj.value = "24 hours";
+      break;
+  }
+  message.parsedData.push(obj);
+  obj = {};
+
+
+  var mode = parseInt(frame[4], 2);
+  obj.key = "mode";
+  switch (mode){
+    case 0:
+      obj.value = "button";
+      break;
+    case 1:
+      obj.value = "temp_hum";
+      break;
+    case 2:
+      obj.value = "light";
+      break;
+    case 3:
+      obj.value = "door";
+      break;
+    case 4:
+      obj.value = "move";
+      break;
+    case 5:
+      obj.value = "reed_switch";
+      break;
+  }
+  message.parsedData.push(obj);
+  obj = {};
+
+  var temp = parseInt(frame[5],2);
+  obj.key = "temp";
+  obj.value = (temp * 6.4) - 20;
+  message.parsedData.push(obj);
+  console.log(obj.value);
+  obj = {};
+
+  return message;
+
+
 }
 
 function decodeTutoGPS(message) {
@@ -359,47 +446,3 @@ function decodeGeolocWifi(message){
 
 }
 
-
-function getBinaryFrame(frameHex) {
-//  console.log('getFrameBinary', frameHex);
-  var bytes = frameHex.match(/.{1,2}/g);
-  if (bytes.length !== 12) {
-    //console.log('Invalid frame, got %s bytes', bytes.length);
-    return null;
-  }
-  var binaryString = '';
-  bytes.forEach(function (byte) {
-    binaryString += getBinaryFromHex(byte);
-
-  });
-  if (!binaryString.match(/^([0-9]*)$/)) {
-    console.log('Unable to parse frame %s : %s', frameHex, binaryString);
-    return null;
-  }
-
-  return binaryString;
-
-}
-function getBinaryFromHex(byte) {
-  var num = Number(parseInt(byte, 16));
-  if (isNaN(num)) {
-    console.log('Invalid byte %s', byte);
-    return null;
-  }
-  var binary = num.toString(2);
-
-  //Fill the byte with zeros
-  while (binary.length < 8) {
-    binary = '0' + binary;
-  }
-
-  return binary;
-}
-
-function getDecimalCoord(sigfoxFrame) {
-  var degrees = Math.floor(sigfoxFrame);
-  var minutes = sigfoxFrame % 1 / 60 * 100;
-  minutes = Math.round(minutes * 10000) / 10000;
-  return degrees + minutes;
-
-}
