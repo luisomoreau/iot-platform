@@ -130,7 +130,7 @@ function parsePayload(message){
             message = decodeTutoGPS(message);
             break;
           case "Geoloc Wifi":
-            //message = decodeGeolocWifi(message);
+            message = decodeGeolocWifi(message);
             break;
         }
       }else{
@@ -265,6 +265,28 @@ function decodeTutoGPS(message) {
 }
 
 function decodeGeolocWifi(message){
+
+  message.parsedData = [];
+  var obj = {};
+
+  console.log(message.data.length)
+
+  if(message.data.length == 24){
+
+    var decode = message.data.match(/.{1,12}/g).map(function(net){return net.match(/.{1,2}/g).join(':');});
+
+    obj.key = "mac_address_1";
+    obj.value = decode[0];
+    message.parsedData.push(obj);
+    obj = {};
+
+    obj.key = "mac_address_2";
+    obj.value = decode[1];
+    message.parsedData.push(obj);
+    obj = {};
+  }
+
+  return message;
 
 }
 
