@@ -161,7 +161,7 @@ function decodeSentit(message){
 
   var type = parseInt(frame[2],2);
   obj.key = "type";
-  switch (mode){
+  switch (type){
     case 0:
       obj.value = "regular";
       break;
@@ -180,7 +180,7 @@ function decodeSentit(message){
 
   var timeframe = parseInt(frame[3],2);
   obj.key = "timeframe";
-  switch (mode){
+  switch (timeframe){
     case 0:
       obj.value = "10 min";
       break;
