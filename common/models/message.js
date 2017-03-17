@@ -166,6 +166,7 @@ function decodeTutoGPS(message) {
 
     var lat = (frame[1] === "1" ? -1 : 1) * getDecimalCoord(parseInt(frame[2], 2) / Math.pow(10, 6));
     //console.log('lat:', lat);
+    message.geoloc.gps.lat = lat;
     obj.key = "lat";
     obj.value = lat;
     message.parsedData.push(obj);
@@ -173,6 +174,7 @@ function decodeTutoGPS(message) {
 
     var lng = (frame[3] === "1" ? -1 : 1) * getDecimalCoord(parseInt(frame[4], 2) / Math.pow(10, 6));
     //console.log('long:', lng);
+    message.geoloc.gps.long = long;
     obj.key = "long";
     obj.value = lng;
     message.parsedData.push(obj);
@@ -246,7 +248,10 @@ function decodeTutoGPS(message) {
   }
 
   if (message.data.length == 2 || message.data.length == 4) {
-    message.message_type = 'Timeout';
+    obj.key = "message_type";
+    obj.value = "Timeout";
+    message.parsedData.push(obj);
+    obj = {};
     if(message.data.length == 4){
       var battery = parseInt(message.data.substring(0,2), 16);
     }else{
@@ -305,17 +310,20 @@ function decodeGeolocWifi(message){
       }
       console.log(data);
 
+      message.geoloc.wifi.lat = data.location.lat;
       obj.key = "lat";
       obj.value = data.location.lat;
       message.parsedData.push(obj);
       obj = {};
 
+      message.geoloc.wifi.long = data.location.lng;
       obj.key = "long";
       obj.value = data.location.lng;
       message.parsedData.push(obj);
       obj = {};
 
-      obj.key = "accuracy";
+      message.geoloc.wifi.precision = data.accuracy;
+      obj.key = "precision";
       obj.value = data.accuracy;
       message.parsedData.push(obj);
       obj = {};

@@ -2,13 +2,15 @@
   'use strict';
   angular
     .module('com.module.messages')
-    .controller('MessagesCtrl', function (CoreService, $state, $scope, Message, Device, uiGmapGoogleMapApi, uiGmapIsReady) {
+    .controller('MessagesCtrl', function (CoreService, $state, $scope, Message, Device, uiGmapGoogleMapApi, uiGmapIsReady, DTOptionsBuilder, DTColumnDefBuilder) {
 
       $scope.expandParsedData = true;
 
       $scope.expand = function(){
         $scope.expandParsedData = !$scope.expandParsedData;
       }
+
+      $scope.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers').withDisplayLength(50).withOption('order', [[0, 'desc']]);
 
       //------------Get Messages---------------
 

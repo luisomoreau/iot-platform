@@ -38,14 +38,14 @@
   <div class="panel-body">
 
     <div class="table-responsive">
-      <table datatable="ng" class="table">
+      <table datatable="ng" class="table" dt-options="dtOptions">
         <thead>
         <tr>
           <th>Date</th>
           <th>Device Id</th>
           <th>Data</th>
           <th>Parser</th>
-          <th>Spotit (precision)</th>
+          <th>Geoloc</th>
           <th>RSSI (dBm)</th>
           <th>Seq Num</th>
         </tr>
@@ -56,8 +56,20 @@
           <td>{{message.deviceId}}</td>
           <td>{{message.data}}</td>
           <td>{{message.parser}}<small ng-repeat="item in message.parsedData" ng-show="expandParsedData"><br>{{item.key}}: {{item.value}}</small></td>
-          <td><a ng-click="buildMap(message.id, message.spotit.lat, message.spotit.long, message.spotit.precision)">{{message.spotit.lat | number : 6}} {{message.spotit.long | number: 6}}</a>
-            {{message.spotit.precision ? "(" + message.spotit.precision + " m)" : ""}}</td>
+          <td>
+            <p ng-show="message.geoloc.spotit">Spotit: <a ng-click="buildMap(message.id, message.geoloc.spotit.lat, message.geoloc.spotit.long, message.geoloc.spotit.precision)">
+            {{message.geoloc.spotit.lat | number : 6}} {{message.geoloc.spotit.long | number: 6}}</a>
+            {{message.geoloc.spotit.precision ? "(" + message.geoloc.spotit.precision + "m)" : ""}}
+            </p>
+            <p ng-show="message.geoloc.wifi">Wifi: <a ng-click="buildMap(message.id, message.geoloc.wifi.lat, message.geoloc.wifi.long, message.geoloc.wifi.precision)">
+              {{message.geoloc.wifi.lat | number : 6}} {{message.geoloc.wifi.long | number: 6}}</a>
+              {{message.geoloc.wifi.precision ? "(" + message.geoloc.wifi.precision + "m)" : ""}}
+            </p>
+            <p ng-show="message.geoloc.gps">Gps: <a ng-click="buildMap(message.id, message.geoloc.gps.lat, message.geoloc.gps.long, message.geoloc.gps.precision)">
+              {{message.geoloc.gps.lat | number : 6}} {{message.geoloc.gps.long | number: 6}}</a>
+              {{message.geoloc.gps.precision ? "(" + message.geoloc.gps.precision + "m)" : ""}}
+            </p>
+          </td>
           <td>{{message.RSSI}}</td>
           <td>{{message.seqNumber}}</td>
         </tr>
