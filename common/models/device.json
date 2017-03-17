@@ -21,10 +21,8 @@
     "device_type": {
       "type": "string"
     },
-    "parsers": {
-      "type": [
-        "Parser"
-      ]
+    "parser": {
+      "type": "object"
     }
   },
   "validations": [],

@@ -19,7 +19,7 @@
                     url: '/:id/edit',
                     templateUrl: 'modules/devices/views/edit.html',
                     controllerAs: 'ctrl',
-                    controller: function ($state, Device, device) {
+                    controller: function ($state, Device, Parser, device) {
                       console.log(device);
                       this.device = device;
                       this.submit = function () {
@@ -27,6 +27,10 @@
                           $state.go('^.list');
                         });
                       };
+                      this.parsers =  Parser.find({
+                        filter: {order: 'created DESC'}
+                      });
+
                     },
                     resolve: {
                       device: function ($stateParams, Device) {

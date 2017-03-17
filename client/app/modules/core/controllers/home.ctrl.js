@@ -9,7 +9,7 @@
    **/
   angular
     .module('com.module.core')
-    .controller('HomeCtrl', function ($scope, $rootScope, LoopBackAuth, User, Device, Message, uiGmapGoogleMapApi, CoreService, uiGmapIsReady) {
+    .controller('HomeCtrl', function ($scope, $rootScope, LoopBackAuth, User, Device, Message, Parser, uiGmapGoogleMapApi, CoreService, uiGmapIsReady) {
 
       $scope.fakeData = false;
 
@@ -21,6 +21,9 @@
       });
       Device.find(function (devices) {
         $rootScope.addDashboardBox('Devices', 'bg-blue', 'ion-location', devices.length, 'app.devices.list');
+      });
+      Parser.find(function (parsers) {
+        $rootScope.addDashboardBox('Parsers', 'bg-green', 'ion-code', parsers.length, 'app.parsers.list');
       });
 
       $scope.count = {};

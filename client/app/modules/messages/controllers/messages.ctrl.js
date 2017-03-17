@@ -4,6 +4,12 @@
     .module('com.module.messages')
     .controller('MessagesCtrl', function (CoreService, $state, $scope, Message, Device, uiGmapGoogleMapApi, uiGmapIsReady) {
 
+      $scope.expandParsedData = true;
+
+      $scope.expand = function(){
+        $scope.expandParsedData = !$scope.expandParsedData;
+      }
+
       //------------Get Messages---------------
 
       $scope.messages = [];

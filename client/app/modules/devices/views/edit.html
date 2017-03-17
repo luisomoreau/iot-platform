@@ -18,6 +18,16 @@
             <input type="text" class="form-control" placeholder="Device Name" ng-model="ctrl.device.name">
           </div>
 
+          <div class="form-group">
+            <label>Associate a parser</label>
+            <select class="form-control" ng-options="parser.name for parser in ctrl.parsers" ng-model="ctrl.device.parser">
+            </select>
+            <!--<p class="help-block" ng-show="ctrl.device.parser">{{device.parser.name}}-->
+              <!--<button class="btn btn-sm btn-danger pull-right"><icon class="fa fa-trash"></icon>-->
+              <!--</button>-->
+            <!--</p>-->
+          </div>
+
         </div>
       </div>
     </div>

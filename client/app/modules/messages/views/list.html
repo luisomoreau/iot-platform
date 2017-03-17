@@ -30,6 +30,10 @@
   <div class="panel-heading">
     Messages
     <button class="btn btn-xs btn-default" ng-click="refreshMessages()"><i class="fa fa-refresh"></i></button>
+    <button class="btn btn-xs btn-info pull-right" ng-click="expand()">
+      <i ng-hide="expandParsedData" class="fa fa-eye">View parsed data</i>
+      <i ng-show="expandParsedData" class="fa fa-eye-slash">Hide parsed data</i>
+    </button>
   </div>
   <div class="panel-body">
 
@@ -40,7 +44,10 @@
           <th>Date</th>
           <th>Device Id</th>
           <th>Data</th>
+          <th>Parser</th>
           <th>Spotit (precision)</th>
+          <th>RSSI (dBm)</th>
+          <th>Seq Num</th>
         </tr>
         </thead>
         <tbody>
@@ -48,7 +55,11 @@
           <td>{{message.time * 1000 | date:"yyyy/MM/dd HH:mm:ss"}}</td>
           <td>{{message.deviceId}}</td>
           <td>{{message.data}}</td>
-          <td><a ng-click="buildMap(message.id, message.spotit.lat, message.spotit.long, message.spotit.precision)">{{message.spotit.lat | number : 6}} {{message.spotit.long | number: 6}}</a> ({{message.spotit.precision}}m)</td>
+          <td>{{message.parser}}<small ng-repeat="item in message.parsedData" ng-show="expandParsedData"><br>{{item.key}}: {{item.value}}</small></td>
+          <td><a ng-click="buildMap(message.id, message.spotit.lat, message.spotit.long, message.spotit.precision)">{{message.spotit.lat | number : 6}} {{message.spotit.long | number: 6}}</a>
+            {{message.spotit.precision ? "(" + message.spotit.precision + " m)" : ""}}</td>
+          <td>{{message.RSSI}}</td>
+          <td>{{message.seqNumber}}</td>
         </tr>
         </tbody>
       </table>

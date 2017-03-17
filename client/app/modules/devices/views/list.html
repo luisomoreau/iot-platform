@@ -30,7 +30,7 @@
           <td>{{device.id}}</td>
           <td>{{device.name}}</td>
           <td>{{device.creation * 1000 | date:"yyyy/MM/dd" }}</td>
-          <td>{{device.parser}}</td>
+          <td>{{device.parser.name}}</td>
           <td>
             <a href="" class="btn btn-xs btn-default" ui-sref="^.edit({id: device.id})">
               <i class="fa fa-pencil"></i>
