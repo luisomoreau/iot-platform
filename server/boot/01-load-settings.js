@@ -22,32 +22,37 @@ module.exports = function (app) {
                 'skin-blue',
                 'skin-black',
                 'skin-green'
-            ]
-        }, {
-            type: 'select',
-            key: 'appLayout',
-            value: 'fixed',
-            options: [
-                'skin-blue',
-                'not-fixed'
-            ]
-        }, {
+            ]},
+          {
             type: 'string',
-            key: 'formLayout',
-            value: 'horizontal'
-        }, {
-            type: 'int',
-            key: 'formLabelSize',
-            value: 3
-        }, {
-            type: 'int',
-            key: 'formInputSize',
-            value: 9
-        }, {
-            type: 'boolean',
-            key: 'com.module.users.enable_registration',
-            value: true
-        }];
+            key: 'googleApiKey',
+            value: ''
+          }];
+        // }, {
+        //     type: 'select',
+        //     key: 'appLayout',
+        //     value: 'fixed',
+        //     options: [
+        //         'skin-blue',
+        //         'not-fixed'
+        //     ]
+        // }, {
+        //     type: 'string',
+        //     key: 'formLayout',
+        //     value: 'horizontal'
+        // }, {
+        //     type: 'int',
+        //     key: 'formLabelSize',
+        //     value: 3
+        // }, {
+        //     type: 'int',
+        //     key: 'formInputSize',
+        //     value: 9
+        // }, {
+        //     type: 'boolean',
+        //     key: 'com.module.users.enable_registration',
+        //     value: true
+        // }];
 
         settings.forEach(function (setting) {
             Setting.create(setting, function (err) {

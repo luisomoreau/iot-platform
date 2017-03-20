@@ -126,7 +126,7 @@ function parsePayload(message){
 
         switch (device.parser.name){
           case "Sensit":
-            message = decodeSentit(message);
+            message = decodeSensit(message);
             break;
           case "Tuto GPS":
             message = decodeTutoGPS(message);
@@ -148,7 +148,9 @@ function parsePayload(message){
   }});
 }
 
-function decodeSentit(message){
+function decodeSensit(message){
+
+  //Datasheet: https://api.sensit.io/resources/pdf/V2_uplink.pdf
 
   message.parsedData = [];
   var obj = {};
@@ -177,6 +179,7 @@ function decodeSentit(message){
   }
   message.parsedData.push(obj);
   obj = {};
+
 
   var timeframe = parseInt(frame[3],2);
   obj.key = "timeframe";
@@ -386,8 +389,34 @@ function decodeGeolocWifi(message){
     message.parsedData.push(obj);
     obj = {};
 
+    var googleApiKey = "";
+
+    if(!process.env.GOOGLE_KEY){
+      var Setting = app.models.Setting;
+
+      Setting.findOne(
+        {where: {key: "googleApiKey"}}, // find
+        function (err, item) {
+          if (err) {
+            console.log('No Google API key found in settings', err);
+          }else{
+            console.log(item);
+            if(item){
+              googleApiKey = item.value;
+              console.log("Found Google API key in setting", item.value);
+              askGoogle();
+            };
+          }
+        });
+    }else{
+      googleApiKey = process.env.GOOGLE_KEY;
+      askGoogle();
+    }
+  }
+
+  function askGoogle(){
     const geolocation = require ('google-geolocation') ({
-      key: process.env.GOOGLE_KEY
+      key: googleApiKey
     });
 
     // Configure API parameters
