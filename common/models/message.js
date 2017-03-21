@@ -111,20 +111,24 @@ function twit(message){
     return obj.key == "temp";
   });
 
-  if(type.length != 0){
-    status = status + " Type: " + type[0].value +" - ";
-    console.log(status);
+  if(type.value == "new mode"){
+    status = "Oh I just changed my sensor mode. I'm now in " + mode.value + " mode !";
   }
 
-  if(mode.length != 0){
-    status = status + "Mode: " + mode[0].value +" - ";
-    console.log(status);
-  }
-
-  if(temp.length != 0){
-    status = status + "Temperature: " +  Number((temp[0].value).toFixed(2)) + "°C ";
-    console.log(status);
-  }
+  // if(type.length != 0){
+  //   status = status + " Type: " + type[0].value +" - ";
+  //   console.log(status);
+  // }
+  //
+  // if(mode.length != 0){
+  //   status = status + "Mode: " + mode[0].value +" - ";
+  //   console.log(status);
+  // }
+  //
+  // if(temp.length != 0){
+  //   status = status + "Temperature: " +  Number((temp[0].value).toFixed(2)) + "°C ";
+  //   console.log(status);
+  // }
 
   if(status != ""){
     status = status + "#SpeakingBird";
@@ -228,7 +232,7 @@ function decodeSensit(message, tweet){
       obj.value = "button";
       break;
     case 1:
-      obj.value = "temp_hum";
+      obj.value = "temperature and humidity";
       break;
     case 2:
       obj.value = "light";
@@ -240,7 +244,7 @@ function decodeSensit(message, tweet){
       obj.value = "move";
       break;
     case 5:
-      obj.value = "reed_switch";
+      obj.value = "magnet";
       break;
   }
   message.parsedData.push(obj);
