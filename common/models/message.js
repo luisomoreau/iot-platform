@@ -128,27 +128,13 @@ function twit(message){
     status = "Who just opened the door?";
   }
 
-  if(type[0].value == "regular" && mode[0].value == "temperature and humidity"){
-    status = "It's " + temp[0].value + "°C ";
+  if(type[0].value == "regular"){
+    status = "It's " + Number((temp[0].value).toFixed(2)) + "°C ";
   }
 
-  // if(type.length != 0){
-  //   status = status + " Type: " + type[0].value +" - ";
-  //   console.log(status);
-  // }
-  //
-  // if(mode.length != 0){
-  //   status = status + "Mode: " + mode[0].value +" - ";
-  //   console.log(status);
-  // }
-  //
-  // if(temp.length != 0){
-  //   status = status + "Temperature: " +  Number((temp[0].value).toFixed(2)) + "°C ";
-  //   console.log(status);
-  // }
-
   if(status != ""){
-    status = status + "#SpeakingBird";
+    var date = new Date.now();
+    status = status + "#SpeakingBird " + date.toLocaleString();
     client.post('statuses/update', {status: status},  function(error, tweet, response){
       if(error) console.log(error);
       console.log("tweet:",tweet);  // Tweet body.
