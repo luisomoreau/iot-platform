@@ -23,6 +23,9 @@
     },
     "parser": {
       "type": "object"
+    },
+    "tweet": {
+      "type": "Boolean"
     }
   },
   "validations": [],

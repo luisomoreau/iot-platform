@@ -27,9 +27,6 @@ module.exports = function (Message) {
           : console.log('found device', createdItem.id);
       });
 
-    //message = parsePayload(message);
-
-
     message.save(function (err, instance) {
       if (err) {
         console.log(err);
@@ -38,10 +35,6 @@ module.exports = function (Message) {
         parsePayload(message);
       }
     });
-
-    if(message.tweet){
-      twit(message);
-    }
 
     next();
   });
@@ -95,6 +88,7 @@ function getDecimalCoord(sigfoxFrame) {
 }
 
 function twit(message){
+  console.log("ready to twit");
   //Use the environment variables in production
   var client = new Twitter({
     consumer_key: process.env.TWITTER_CONSUMER_KEY,
@@ -103,13 +97,45 @@ function twit(message){
     access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
   });
 
-  var status = message.data;
+  var status = "";
 
-  client.post('statuses/update', {status: status},  function(error, tweet, response){
-    if(error) console.log(error);
-    console.log("tweet:",tweet);  // Tweet body.
-    //console.log(response);  // Raw response object.
+  var type = message.parsedData.filter(function( obj ) {
+    return obj.key == "type";
   });
+
+  var mode = message.parsedData.filter(function( obj ) {
+    return obj.key == "mode";
+  });
+
+  var temp = message.parsedData.filter(function( obj ) {
+    return obj.key == "temp";
+  });
+
+  if(type.length != 0){
+    status = status + " Type: " + type[0].value +" - ";
+    console.log(status);
+  }
+
+  if(mode.length != 0){
+    status = status + "Mode: " + mode[0].value +" - ";
+    console.log(status);
+  }
+
+  if(temp.length != 0){
+    status = status + "Temperature: " +  Number((temp[0].value).toFixed(2)) + "°C ";
+    console.log(status);
+  }
+
+  if(status != ""){
+    status = status + "#SpeakingBird";
+    client.post('statuses/update', {status: status},  function(error, tweet, response){
+      if(error) console.log(error);
+      console.log("tweet:",tweet);  // Tweet body.
+      //console.log(response);  // Raw response object.
+    });
+  }
+
+
 
 }
 
@@ -126,7 +152,7 @@ function parsePayload(message){
 
         switch (device.parser.name){
           case "Sensit":
-            message = decodeSensit(message);
+            message = decodeSensit(message, device.tweet);
             break;
           case "Tuto GPS":
             message = decodeTutoGPS(message);
@@ -138,17 +164,11 @@ function parsePayload(message){
       }else{
         return message;
       }
-      message.save(function (err, instance) {
-        if (err) {
-          console.log(err);
-        } else {
-          console.log(instance);
-        }
-      });
+      saveMessage(message);
   }});
 }
 
-function decodeSensit(message){
+function decodeSensit(message, tweet){
 
   //Datasheet: https://api.sensit.io/resources/pdf/V2_uplink.pdf
 
@@ -232,6 +252,10 @@ function decodeSensit(message){
   message.parsedData.push(obj);
   console.log(obj.value);
   obj = {};
+
+  if(tweet){
+    twit(message);
+  }
 
   return message;
 
@@ -459,19 +483,22 @@ function decodeGeolocWifi(message){
       obj.value = data.accuracy;
       message.parsedData.push(obj);
       obj = {};
-
-      message.save(function (err, instance) {
-        if (err) {
-          console.log(err);
-        } else {
-          //console.log(instance);
-        }
-      });
+      saveMessage(message);
 
     });
   }
 
   return message;
 
+}
+
+function saveMessage(message){
+  message.save(function (err, instance) {
+    if (err) {
+      console.log(err);
+    } else {
+      //console.log(instance);
+    }
+  });
 }
 
