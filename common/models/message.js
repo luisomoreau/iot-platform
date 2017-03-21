@@ -115,6 +115,25 @@ function twit(message){
     status = "Oh I just changed my sensor mode. I'm now in " + mode.value + " mode !";
   }
 
+  if(type.value == "button call"){
+    status = "Someone just pushed my button. I'm still in " + mode.value + " mode !";
+  }
+
+  if(type.value == "alert" && mode.value == "move"){
+    status = "I've been waken up, someone just touched me!";
+  }
+
+  if(type.value == "alert" && mode.value == "door"){
+    status = "Who just opened the door?";
+  }
+
+  if(type.value == "regular" && mode.value == "temperature and humidity"){
+    status = "It's " + temp.value + "°C ";
+  }
+
+
+
+
   // if(type.length != 0){
   //   status = status + " Type: " + type[0].value +" - ";
   //   console.log(status);
