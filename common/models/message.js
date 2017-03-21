@@ -117,7 +117,7 @@ function twit(message){
   }
 
   if(type[0].value == "button call"){
-    status = "Someone just pushed my button. I'm still in " + mode[0].value + " mode !";
+    status = "Someone just pushed my button. I'm still in " + mode[0].value + " mode and it's " + Number((temp[0].value).toFixed(2)) + "°C ";
   }
 
   if(type[0].value == "alert" && mode[0].value == "move"){
