@@ -133,8 +133,8 @@ function twit(message){
   }
 
   if(status != ""){
-    var date = new Date.now();
-    status = status + "#SpeakingBird " + date.toLocaleString();
+    //var date = Date.now();
+    status = status + "#SpeakingBird " + new Date().getHours() + "h" + new Date().getMinutes();
     client.post('statuses/update', {status: status},  function(error, tweet, response){
       if(error) console.log(error);
       console.log("tweet:",tweet);  // Tweet body.
