@@ -107,32 +107,30 @@ function twit(message){
     return obj.key == "mode";
   });
 
+
   var temp = message.parsedData.filter(function( obj ) {
     return obj.key == "temp";
   });
 
-  if(type.value == "new mode"){
-    status = "Oh I just changed my sensor mode. I'm now in " + mode.value + " mode !";
+  if(type[0].value == "new mode"){
+    status = "Oh I just changed my sensor mode. I'm now in " + mode[0].value + " mode !";
   }
 
-  if(type.value == "button call"){
-    status = "Someone just pushed my button. I'm still in " + mode.value + " mode !";
+  if(type[0].value == "button call"){
+    status = "Someone just pushed my button. I'm still in " + mode[0].value + " mode !";
   }
 
-  if(type.value == "alert" && mode.value == "move"){
+  if(type[0].value == "alert" && mode[0].value == "move"){
     status = "I've been waken up, someone just touched me!";
   }
 
-  if(type.value == "alert" && mode.value == "door"){
+  if(type[0].value == "alert" && mode[0].value == "door"){
     status = "Who just opened the door?";
   }
 
-  if(type.value == "regular" && mode.value == "temperature and humidity"){
-    status = "It's " + temp.value + "°C ";
+  if(type[0].value == "regular" && mode[0].value == "temperature and humidity"){
+    status = "It's " + temp[0].value + "°C ";
   }
-
-
-
 
   // if(type.length != 0){
   //   status = status + " Type: " + type[0].value +" - ";
