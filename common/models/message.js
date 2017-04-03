@@ -133,7 +133,6 @@ function twit(message){
   }
 
   if(status != ""){
-    //var date = Date.now();
     status = status + "#SpeakingBird " + new Date().getHours() + "h" + new Date().getMinutes();
     client.post('statuses/update', {status: status},  function(error, tweet, response){
       if(error) console.log(error);
