@@ -144,7 +144,34 @@ Save your change:
 
 You now can see your parsed messages:
 
-![messages](screenshots/messagesWithParsedData.png) 
+![messages](screenshots/messagesWithParsedData.png)
+
+### Add Sigfox Geolocalisation service:
+
+If you wish to see the Sigfox Geolocation, go back back to Sigfox backend. You will need to create a new callback as the following:
+
+![callback spotit](screenshots/callbackSpotit.png)
+
+The URL pattern is like:
+```
+http://<your-app-name>.herokuapp.com/api/Messages/update?where[time]={time}&where[deviceId]={device}
+```
+
+Select a "POST" HTTP method and the body:
+
+```
+{
+"spotit":{
+  "lat": {lat},
+  "long":{lng},
+  "precision": {radius}
+  }
+}
+```
+
+Then a second callback will update your message and the results will be like this if a result is available:
+
+![spotit map](screenshots/spotitMap.png)
 
 ## Getting started
 
