@@ -22,6 +22,14 @@ module.exports = function (app) {
       {
         "name": "Tuto GPS",
         "description": "Decode the GPS data from the tutorial: https://www.instructables.com/id/Sigfox-GPS-Tracker/"
+      },
+      {
+        "name": "Talking Plant",
+        "description": "Get the plan information, first byte being humidity, second temperature and third brightness and forth alert"
+      },
+      {
+        "name": "Forest Fire Alarm",
+        "description": "First byte is the alert, second is the temperature and third humidity"
       }
     ];
 

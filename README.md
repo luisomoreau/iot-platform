@@ -179,7 +179,7 @@ Then a second callback will update your message and the results will be like thi
 
 Installation depends on `node`/`npm` with `grunt` and `bower` installed globally.
 
-    $ npm install -g bower grunt-cli
+    $ npm install -g bo wer grunt-cli
 
 ### Installation:
 

@@ -166,6 +166,12 @@ function parsePayload(message){
           case "Geoloc Wifi":
             message = decodeGeolocWifi(message);
             break;
+          case "Talking Plant":
+            message = decodeTalkingPlant(message);
+            break;
+          case "Fire Forest Alarm":
+            message = decodeFireAlarm(message);
+            break;
         }
       }else{
         return message;
@@ -496,6 +502,53 @@ function decodeGeolocWifi(message){
 
   return message;
 
+}
+
+function decodeTalkingPlant(message){
+
+  //console.log(message.data.length);
+
+  message.parsedData = [];
+  var obj = {};
+
+  if (message.data.length == 8) {
+
+    var framePattern = /(.{8})(.{8})(.{8})(.{8})/;
+    var binaryFrame = getBinaryFrame(message.data);
+    var frame = framePattern.exec(binaryFrame);
+
+    var hum = parseInt(frame[1], 2);
+    obj.key = "humidity";
+    obj.value = hum;
+    message.parsedData.push(obj);
+    obj = {};
+
+    var temp = parseInt(frame[2], 2);
+    obj.key = "temperature";
+    obj.value = temp;
+    message.parsedData.push(obj);
+    obj = {};
+
+    var brightness = parseInt(frame[2], 2);
+    obj.key = "brightness";
+    obj.value = brightness;
+    message.parsedData.push(obj);
+    obj = {};
+
+    var alert = parseInt(frame[2], 2);
+    obj.key = "alert";
+    obj.value = alert;
+    message.parsedData.push(obj);
+    obj = {};
+
+    return message;
+
+  }
+  return message;
+}
+
+function decodeFireAlarm(message){
+  return message;
 }
 
 function saveMessage(message){
