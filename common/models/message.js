@@ -27,12 +27,14 @@ module.exports = function (Message) {
           : console.log('found device', createdItem.id);
       });
 
+    parsePayload(message);
+
     message.save(function (err, instance) {
       if (err) {
         console.log(err);
       } else {
         //console.log(instance);
-        parsePayload(message);
+
       }
     });
 
