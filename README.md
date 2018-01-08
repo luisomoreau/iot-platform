@@ -1,5 +1,10 @@
 # IoT Platform
 
+This project is no longer maintained: Please see [https://github.com/luisomoreau/sigfox-platform](https://github.com/luisomoreau/sigfox-platform) instead.
+
+
+
+
 Angular + Loopback admin app to see Sigfox devices and messages.
 
 I used [https://github.com/beeman/loopback-angular-admin](https://github.com/beeman/loopback-angular-admin) as a base project.
